@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <meta name="google-signin-client_id" content="914029879417-bnbaqi7glhc6ajf6dihj0bhms3v5p0c5.apps.googleusercontent.com">
+        <title>Login Page</title>
+    </head>
+    <body class="bg-dark">
+
+        <div>
+            <h1 class="pb-5 mb-0 logo">Yellow Moon Shop</h1>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button> 
+
+              <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+                <ul class="navbar-nav">
+                  <li class="nav-item"><a class="nav-link" href="shop">Shopping</a></li>
+                  <li class="nav-item"><a class="nav-link" href="viewCart">View Cart</a></li>
+                  <li class="nav-item"><a class="nav-link" href="checkOut">Check Out</a></li>
+                  <li class="nav-item active"><a class="nav-link" href="login">Log In</a></li>
+                </ul>
+              </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid bg-light page-content">
+            <div class="row content-part">
+                <div class="col col-md-6 m-auto bg-dark text-light p-5 rounded shadow">
+                    <h1 class="mb-5">Log In</h1>
+                    <form action="login" method="POST">
+                      <div class="form-group">
+                        <label for="txtEmail">Email Address</label>
+                        <input type="email" class="form-control" id="txtEmail" name="txtEmail" value="" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="txtPassword">Password</label>
+                        <input type="password" class="form-control" id="txtPassword" name="txtPassword" value="" required>
+                      </div>
+                      <div class="form-group">
+                        <input type="submit" class="btn btn-outline-light mr-3" value="Log In" name="btAction">
+                        <span class="mr-3">Or</span>
+                        <div class="g-signin2" data-onsuccess="onSignIn" style="display: -webkit-inline-box"></div>
+                      </div>
+                    </form>
+                    <p class="text-danger" id="error-message">Invalid email address or password. Please check that you entered the right one!</p>
+                </div>
+            </div>
+        </div> 
+        <div>
+            <h6 class="p-4 mb-0 text-light text-center">&copy; 2020 Yellow Moon Shop</h6>
+        </div>
+        <script>
+            function onSignIn(googleUser) {
+                var id_token = googleUser.getAuthResponse().id_token;
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'http://localhost:8080/YellowMoonShop/glogin');
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+                    var response = xhr.responseText;
+                    if (response == "VALID") {
+                        window.location.href = "shop";
+                    } else {
+                        document.getElementById("error-message").innerHTML = 'Your account is not valid. Please try again!';
+                    }
+                    gapi.auth2.getAuthInstance().disconnect();
+                };
+                xhr.send('idToken=' + id_token);
+            }
+        </script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>
+

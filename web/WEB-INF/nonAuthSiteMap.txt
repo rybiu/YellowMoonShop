@@ -1,0 +1,11 @@
+login=LoginServlet
+glogin=LoginWithGoogleServlet
+ =SearchServlet
+shop=SearchServlet
+addCart=AddToCartServlet
+updateCart=UpdateCartServlet
+removeCart=RemoveFromCartServlet
+viewCart=ViewCartServlet
+checkOut=CheckOutServlet
+reqOP=OnlinePaymentRequestServlet
+resOP=OnlinePaymentResponseServlet
