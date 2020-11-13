@@ -15,7 +15,7 @@ public class Constant {
 
     public static final int PAGING_SIZE = 20;
 
-    public static String GOOGLE_CLIENT_ID = "914029879417-bnbaqi7glhc6ajf6dihj0bhms3v5p0c5.apps.googleusercontent.com";
+    public static String GOOGLE_CLIENT_ID = "YOUR-GOOGLE-CLIENT-ID";
     public static String GOOGLE_LINK_GET_TOKEN = "https://oauth2.googleapis.com/tokeninfo?id_token=";
 
     public static String MOMO_PARTNER_CODE = "MOMO";
